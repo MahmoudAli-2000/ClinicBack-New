@@ -29,7 +29,14 @@ namespace TourSite.APIs
                 });
             });
 
-            builder.Services.AddControllers().AddJsonOptions(options =>
+            builder.Services.AddLocalization();
+            builder.Services.Configure<Microsoft.AspNetCore.Builder.RequestLocalizationOptions>(options => {
+              var cultures = new[] { "en", "ar" };
+              options.SetDefaultCulture("en").AddSupportedCultures(cultures).AddSupportedUICultures(cultures);
+              options.ApplyCurrentCultureToResponseHeaders = true;
+              options.RequestCultureProviders = new Microsoft.AspNetCore.Localization.IRequestCultureProvider[] { new Microsoft.AspNetCore.Localization.QueryStringRequestCultureProvider(), new Microsoft.AspNetCore.Localization.AcceptLanguageHeaderRequestCultureProvider() };
+            });
+            builder.Services.AddControllers(o => o.Filters.Add<TourSite.APIs.Helper.LocalizedMessageFilter>()).AddJsonOptions(options =>
                 options.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter()));
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -37,6 +44,7 @@ namespace TourSite.APIs
             builder.Services.AddDependency(builder.Configuration);
 
             var app = builder.Build();
+            app.UseRequestLocalization();
             await app.UseConfigurationMiddleWare();
 
             app.UseRouting();

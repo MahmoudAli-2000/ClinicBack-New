@@ -42,6 +42,7 @@ namespace TourSite.APIs.Helper
             AddMappingService(services, configuration);
             AddValidationErrorService(services);
             AddIdentityService(services);
+            services.AddScoped<IdentityErrorDescriber, LocalizedIdentityErrors>();
             AddAuthenticationService(services, configuration);
 
             return services;
@@ -117,8 +118,7 @@ namespace TourSite.APIs.Helper
                 {
                     var errors = actionContext.ModelState
                         .Where(e => e.Value.Errors.Count > 0)
-                        .SelectMany(x => x.Value.Errors)
-                        .Select(x => x.ErrorMessage)
+                        .SelectMany(x => x.Value.Errors.Select(error => System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "ar" ? string.Format(TourSite.Core.Localization.Messages.Get("ValidationField"), x.Key) : error.ErrorMessage))
                         .ToArray();
 
                     var response = new ValidationErrorResponse
@@ -176,6 +176,8 @@ namespace TourSite.APIs.Helper
 
                 options.Events = new JwtBearerEvents
                 {
+                    OnChallenge = async context => { context.HandleResponse(); context.Response.StatusCode=401; await context.Response.WriteAsJsonAsync(new APIErrerResponse(401)); },
+                    OnForbidden = async context => { context.Response.StatusCode=403; await context.Response.WriteAsJsonAsync(new APIErrerResponse(403)); },
                     OnMessageReceived = context =>
                     {
                         var cookieToken = context.Request.Cookies["jwt"];

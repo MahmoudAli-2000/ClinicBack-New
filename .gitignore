@@ -363,3 +363,6 @@ MigrationBackup/
 FodyWeavers.xsd
 .env
 TestResults/
+
+# User uploads must not enter source control.
+TourSite.APIs/wwwroot/images/profiles/

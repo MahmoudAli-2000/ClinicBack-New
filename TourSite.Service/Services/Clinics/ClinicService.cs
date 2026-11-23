@@ -73,6 +73,8 @@ namespace TourSite.Service.Services.Clinics
                 throw new AppException(409, "Another specialty with this name already exists.");
 
             specialty.SpecialtyName = dto.SpecialtyName;
+            specialty.SpecialtyNameAr = dto.SpecialtyNameAr;
+            specialty.DescriptionAr = dto.DescriptionAr;
             specialty.Description = dto.Description;
             specialty.IsActive = dto.IsActive;
             if (dto.ImageFile != null)
@@ -126,7 +128,7 @@ namespace TourSite.Service.Services.Clinics
             var searchLower = query.SearchLower;
             var spec = new BaseSpecifications<Specialty>(string.IsNullOrEmpty(searchLower)
                 ? null!
-                : (s => EF.Functions.Like(s.SpecialtyName.ToLower(), $"%{searchLower}%")));
+                : (s => (EF.Functions.Like(s.SpecialtyName.ToLower(), $"%{searchLower}%") || (s.SpecialtyNameAr != null && EF.Functions.Like(s.SpecialtyNameAr, $"%{searchLower}%")))));
 
             if (string.IsNullOrEmpty(searchLower))
                 spec = new BaseSpecifications<Specialty>();
@@ -199,6 +201,8 @@ namespace TourSite.Service.Services.Clinics
                 throw new AppException(409, "Another clinic with this name already exists.");
 
             clinic.ClinicName = dto.ClinicName;
+            clinic.ClinicNameAr = dto.ClinicNameAr;
+            clinic.WorkingHoursNotesAr = dto.WorkingHoursNotesAr;
             clinic.Phone = dto.Phone;
             clinic.Email = dto.Email;
             clinic.AddressLine1 = dto.AddressLine1;
@@ -245,7 +249,7 @@ namespace TourSite.Service.Services.Clinics
             var searchLower = query.SearchLower;
             var spec = new BaseSpecifications<Clinic>(string.IsNullOrEmpty(searchLower)
                 ? null!
-                : (c => EF.Functions.Like(c.ClinicName.ToLower(), $"%{searchLower}%") ||
+                : (c => (EF.Functions.Like(c.ClinicName.ToLower(), $"%{searchLower}%") || (c.ClinicNameAr != null && EF.Functions.Like(c.ClinicNameAr, $"%{searchLower}%"))) ||
                       EF.Functions.Like(c.ClinicCode.ToLower(), $"%{searchLower}%") ||
                       c.City != null && EF.Functions.Like(c.City.ToLower(), $"%{searchLower}%")));
             spec.AddOrderBy(c => c.ClinicName);

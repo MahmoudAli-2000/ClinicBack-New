@@ -224,6 +224,7 @@ namespace TourSite.Service.Services.Auth
             {
                 Id = user.Id,
                 FullName = user.FullName,
+                ImageCover = string.IsNullOrEmpty(user.ImageCover) ? string.Empty : "/" + user.ImageCover.TrimStart('/'),
                 Email = user.Email,
                 IsActive = user.IsActive,
                 EmailConfirmed = user.EmailConfirmed,
@@ -275,6 +276,7 @@ namespace TourSite.Service.Services.Auth
                 RefreshToken = rawRefreshToken,
                 AccessTokenExpiresAtUtc = expiresAt,
                 FullName = user.FullName,
+                ImageCover = string.IsNullOrEmpty(user.ImageCover) ? string.Empty : "/" + user.ImageCover.TrimStart('/'),
                 Email = user.Email,
                 Roles = roles.ToArray()
             };

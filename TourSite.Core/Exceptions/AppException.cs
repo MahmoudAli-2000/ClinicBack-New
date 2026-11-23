@@ -6,7 +6,7 @@ namespace TourSite.Core.Exceptions
     {
         public int StatusCode { get; }
 
-        public AppException(int statusCode, string message) : base(message)
+        public AppException(int statusCode, string message) : base(TourSite.Core.Localization.Messages.Error(message, statusCode))
         {
             StatusCode = statusCode;
         }

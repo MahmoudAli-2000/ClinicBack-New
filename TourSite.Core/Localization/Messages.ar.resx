@@ -1,0 +1,426 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <data name="A clinic with this code already exists." xml:space="preserve">
+    <value>توجد عيادة بهذا الرمز بالفعل.</value>
+  </data>
+  <data name="A doctor with this license number already exists." xml:space="preserve">
+    <value>يوجد طبيب برقم الترخيص نفسه.</value>
+  </data>
+  <data name="A medication with this code already exists." xml:space="preserve">
+    <value>يوجد دواء بهذا الرمز بالفعل.</value>
+  </data>
+  <data name="A prescription already exists for this visit." xml:space="preserve">
+    <value>توجد وصفة طبية لهذه الزيارة بالفعل.</value>
+  </data>
+  <data name="A review already exists for this appointment." xml:space="preserve">
+    <value>يوجد تقييم لهذا الموعد بالفعل.</value>
+  </data>
+  <data name="A user with this email already exists." xml:space="preserve">
+    <value>يوجد مستخدم بهذا البريد الإلكتروني بالفعل.</value>
+  </data>
+  <data name="A visit already exists for this appointment." xml:space="preserve">
+    <value>توجد زيارة لهذا الموعد بالفعل.</value>
+  </data>
+  <data name="All notifications marked as read." xml:space="preserve">
+    <value>تم تعيين كل الإشعارات كمقروءة.</value>
+  </data>
+  <data name="Another clinic with this name already exists." xml:space="preserve">
+    <value>توجد عيادة أخرى بهذا الاسم.</value>
+  </data>
+  <data name="Another specialty with this name already exists." xml:space="preserve">
+    <value>يوجد تخصص آخر بهذا الاسم.</value>
+  </data>
+  <data name="Appointment not found." xml:space="preserve">
+    <value>الموعد غير موجود.</value>
+  </data>
+  <data name="At least one rating is required." xml:space="preserve">
+    <value>يجب إضافة تقييم واحد على الأقل.</value>
+  </data>
+  <data name="Authentication required." xml:space="preserve">
+    <value>يلزم تسجيل الدخول.</value>
+  </data>
+  <data name="Cannot deactivate medication: it is referenced in prescriptions." xml:space="preserve">
+    <value>لا يمكن إيقاف الدواء لارتباطه بوصفات طبية.</value>
+  </data>
+  <data name="Cannot delete specialty: doctors are assigned to it." xml:space="preserve">
+    <value>لا يمكن حذف التخصص لارتباط أطباء به.</value>
+  </data>
+  <data name="Cannot modify a completed prescription." xml:space="preserve">
+    <value>لا يمكن تعديل وصفة طبية مكتملة.</value>
+  </data>
+  <data name="Cannot unassign doctor from clinic: there are active appointments." xml:space="preserve">
+    <value>لا يمكن إزالة الطبيب من العيادة لوجود مواعيد نشطة.</value>
+  </data>
+  <data name="Clinic not found." xml:space="preserve">
+    <value>العيادة غير موجودة.</value>
+  </data>
+  <data name="Clinic status updated." xml:space="preserve">
+    <value>تم تحديث حالة العيادة.</value>
+  </data>
+  <data name="Could not save appearance settings." xml:space="preserve">
+    <value>تعذر حفظ إعدادات المظهر.</value>
+  </data>
+  <data name="Diagnosis deleted." xml:space="preserve">
+    <value>تم حذف التشخيص.</value>
+  </data>
+  <data name="Diagnosis not found." xml:space="preserve">
+    <value>التشخيص غير موجود.</value>
+  </data>
+  <data name="Doctor already has a primary clinic. Set the current primary to false first." xml:space="preserve">
+    <value>للطبيب عيادة أساسية بالفعل. ألغ تعيين العيادة الأساسية الحالية أولا.</value>
+  </data>
+  <data name="Doctor is already assigned to this clinic." xml:space="preserve">
+    <value>الطبيب مرتبط بهذه العيادة بالفعل.</value>
+  </data>
+  <data name="Doctor is not assigned to any active clinic." xml:space="preserve">
+    <value>الطبيب غير مرتبط بأي عيادة نشطة.</value>
+  </data>
+  <data name="Doctor not found." xml:space="preserve">
+    <value>الطبيب غير موجود.</value>
+  </data>
+  <data name="Doctor profile already exists for this staff member." xml:space="preserve">
+    <value>يوجد ملف طبيب لهذا الموظف بالفعل.</value>
+  </data>
+  <data name="Doctor unassigned from clinic." xml:space="preserve">
+    <value>تمت إزالة الطبيب من العيادة.</value>
+  </data>
+  <data name="Doctor-clinic assignment not found." xml:space="preserve">
+    <value>ارتباط الطبيب بالعيادة غير موجود.</value>
+  </data>
+  <data name="Email confirmed." xml:space="preserve">
+    <value>تم تأكيد البريد الإلكتروني.</value>
+  </data>
+  <data name="Email is already registered." xml:space="preserve">
+    <value>البريد الإلكتروني مسجل بالفعل.</value>
+  </data>
+  <data name="Email is required to create an account." xml:space="preserve">
+    <value>البريد الإلكتروني مطلوب لإنشاء حساب.</value>
+  </data>
+  <data name="End time must be later than start time." xml:space="preserve">
+    <value>يجب أن يكون وقت النهاية بعد وقت البداية.</value>
+  </data>
+  <data name="Full name is required." xml:space="preserve">
+    <value>الاسم بالكامل مطلوب.</value>
+  </data>
+  <data name="If the email exists and is unconfirmed, a confirmation link has been sent." xml:space="preserve">
+    <value>تم إرسال رابط تأكيد إذا كان البريد مسجلا وغير مؤكد.</value>
+  </data>
+  <data name="If the email exists, a reset link has been sent." xml:space="preserve">
+    <value>تم إرسال رابط إعادة تعيين إذا كان البريد مسجلا.</value>
+  </data>
+  <data name="Invalid email or password." xml:space="preserve">
+    <value>البريد الإلكتروني أو كلمة المرور غير صحيحة.</value>
+  </data>
+  <data name="Invalid refresh token." xml:space="preserve">
+    <value>رمز تجديد الجلسة غير صالح.</value>
+  </data>
+  <data name="Logged out successfully." xml:space="preserve">
+    <value>تم تسجيل الخروج بنجاح.</value>
+  </data>
+  <data name="Medication not found." xml:space="preserve">
+    <value>الدواء غير موجود.</value>
+  </data>
+  <data name="Medication status updated." xml:space="preserve">
+    <value>تم تحديث حالة الدواء.</value>
+  </data>
+  <data name="Notification marked as read." xml:space="preserve">
+    <value>تم تعيين الإشعار كمقروء.</value>
+  </data>
+  <data name="Notification not found." xml:space="preserve">
+    <value>الإشعار غير موجود.</value>
+  </data>
+  <data name="One or more vital sign values are outside acceptable ranges." xml:space="preserve">
+    <value>إحدى قيم العلامات الحيوية خارج النطاق المسموح.</value>
+  </data>
+  <data name="Only administrative/front-desk staff can create schedules." xml:space="preserve">
+    <value>إنشاء الجداول متاح للإدارة والاستقبال فقط.</value>
+  </data>
+  <data name="Only administrative/front-desk staff can create staff records." xml:space="preserve">
+    <value>إنشاء سجلات الموظفين متاح للإدارة والاستقبال فقط.</value>
+  </data>
+  <data name="Only administrative/front-desk staff can create time-off entries." xml:space="preserve">
+    <value>إضافة الإجازات متاح للإدارة والاستقبال فقط.</value>
+  </data>
+  <data name="Only administrative/front-desk staff can delete schedules." xml:space="preserve">
+    <value>حذف الجداول متاح للإدارة والاستقبال فقط.</value>
+  </data>
+  <data name="Only administrative/front-desk staff can delete time-off entries." xml:space="preserve">
+    <value>حذف الإجازات متاح للإدارة والاستقبال فقط.</value>
+  </data>
+  <data name="Only administrative/front-desk staff can update schedules." xml:space="preserve">
+    <value>تعديل الجداول متاح للإدارة والاستقبال فقط.</value>
+  </data>
+  <data name="Only administrative/front-desk staff can update staff records." xml:space="preserve">
+    <value>تعديل سجلات الموظفين متاح للإدارة والاستقبال فقط.</value>
+  </data>
+  <data name="Only administrative/front-desk staff can update staff status." xml:space="preserve">
+    <value>تعديل حالة الموظفين متاح للإدارة والاستقبال فقط.</value>
+  </data>
+  <data name="Only clinical staff can add diagnoses." xml:space="preserve">
+    <value>إضافة التشخيصات متاح للفريق الطبي فقط.</value>
+  </data>
+  <data name="Only clinical staff can check in patients." xml:space="preserve">
+    <value>تسجيل وصول المرضى متاح للفريق الطبي فقط.</value>
+  </data>
+  <data name="Only clinical staff can complete appointments." xml:space="preserve">
+    <value>إنهاء المواعيد متاح للفريق الطبي فقط.</value>
+  </data>
+  <data name="Only clinical staff can complete visits." xml:space="preserve">
+    <value>إنهاء الزيارات متاح للفريق الطبي فقط.</value>
+  </data>
+  <data name="Only clinical staff can create prescriptions." xml:space="preserve">
+    <value>إنشاء الوصفات الطبية متاح للفريق الطبي فقط.</value>
+  </data>
+  <data name="Only clinical staff can delete diagnoses." xml:space="preserve">
+    <value>حذف التشخيصات متاح للفريق الطبي فقط.</value>
+  </data>
+  <data name="Only clinical staff can delete vital signs." xml:space="preserve">
+    <value>حذف العلامات الحيوية متاح للفريق الطبي فقط.</value>
+  </data>
+  <data name="Only clinical staff can record vital signs." xml:space="preserve">
+    <value>تسجيل العلامات الحيوية متاح للفريق الطبي فقط.</value>
+  </data>
+  <data name="Only clinical staff can start visits." xml:space="preserve">
+    <value>بدء الزيارات متاح للفريق الطبي فقط.</value>
+  </data>
+  <data name="Only clinical staff can update diagnoses." xml:space="preserve">
+    <value>تعديل التشخيصات متاح للفريق الطبي فقط.</value>
+  </data>
+  <data name="Only clinical staff can update prescription status." xml:space="preserve">
+    <value>تعديل حالة الوصفات متاح للفريق الطبي فقط.</value>
+  </data>
+  <data name="Only clinical staff can update visit notes." xml:space="preserve">
+    <value>تعديل ملاحظات الزيارة متاح للفريق الطبي فقط.</value>
+  </data>
+  <data name="Only clinical staff can update vital signs." xml:space="preserve">
+    <value>تعديل العلامات الحيوية متاح للفريق الطبي فقط.</value>
+  </data>
+  <data name="Only doctors can prescribe medications." xml:space="preserve">
+    <value>وصف الأدوية متاح للأطباء فقط.</value>
+  </data>
+  <data name="Only front-desk staff can confirm appointments." xml:space="preserve">
+    <value>تأكيد المواعيد متاح للاستقبال فقط.</value>
+  </data>
+  <data name="Only front-desk staff can mark appointments as no-show." xml:space="preserve">
+    <value>تسجيل عدم الحضور متاح للاستقبال فقط.</value>
+  </data>
+  <data name="Only patients can submit reviews." xml:space="preserve">
+    <value>إرسال التقييمات متاح للمرضى فقط.</value>
+  </data>
+  <data name="Only staff members can cancel appointments." xml:space="preserve">
+    <value>إلغاء المواعيد متاح للموظفين فقط.</value>
+  </data>
+  <data name="Only staff members can create appointments." xml:space="preserve">
+    <value>إنشاء المواعيد متاح للموظفين فقط.</value>
+  </data>
+  <data name="Only staff members can reschedule appointments." xml:space="preserve">
+    <value>إعادة جدولة المواعيد متاح للموظفين فقط.</value>
+  </data>
+  <data name="Password changed successfully." xml:space="preserve">
+    <value>تم تغيير كلمة المرور بنجاح.</value>
+  </data>
+  <data name="Password has been reset." xml:space="preserve">
+    <value>تمت إعادة تعيين كلمة المرور.</value>
+  </data>
+  <data name="Patient not found." xml:space="preserve">
+    <value>المريض غير موجود.</value>
+  </data>
+  <data name="Patient status updated." xml:space="preserve">
+    <value>تم تحديث حالة المريض.</value>
+  </data>
+  <data name="Prescription not found." xml:space="preserve">
+    <value>الوصفة الطبية غير موجودة.</value>
+  </data>
+  <data name="Ratings must be between 1 and 5." xml:space="preserve">
+    <value>يجب أن تكون التقييمات بين ١ و٥.</value>
+  </data>
+  <data name="Refresh token has expired or been revoked." xml:space="preserve">
+    <value>انتهت صلاحية رمز التجديد أو تم إلغاؤه.</value>
+  </data>
+  <data name="Refresh token not found." xml:space="preserve">
+    <value>رمز تجديد الجلسة غير موجود.</value>
+  </data>
+  <data name="Refresh token revoked." xml:space="preserve">
+    <value>تم إلغاء رمز تجديد الجلسة.</value>
+  </data>
+  <data name="Roles updated." xml:space="preserve">
+    <value>تم تحديث الأدوار.</value>
+  </data>
+  <data name="Schedule deleted." xml:space="preserve">
+    <value>تم حذف الجدول.</value>
+  </data>
+  <data name="Schedule not found." xml:space="preserve">
+    <value>الجدول غير موجود.</value>
+  </data>
+  <data name="Schedule overlaps with an existing schedule for the same day." xml:space="preserve">
+    <value>يتعارض الجدول مع جدول آخر في اليوم نفسه.</value>
+  </data>
+  <data name="Specialty already exists." xml:space="preserve">
+    <value>التخصص موجود بالفعل.</value>
+  </data>
+  <data name="Specialty deleted." xml:space="preserve">
+    <value>تم حذف التخصص.</value>
+  </data>
+  <data name="Specialty not found." xml:space="preserve">
+    <value>التخصص غير موجود.</value>
+  </data>
+  <data name="Staff not found." xml:space="preserve">
+    <value>الموظف غير موجود.</value>
+  </data>
+  <data name="Staff status updated." xml:space="preserve">
+    <value>تم تحديث حالة الموظف.</value>
+  </data>
+  <data name="The doctor is not available at the requested time slot." xml:space="preserve">
+    <value>الطبيب غير متاح في الوقت المطلوب.</value>
+  </data>
+  <data name="The doctor is on leave during the requested time." xml:space="preserve">
+    <value>الطبيب في إجازة خلال الوقت المطلوب.</value>
+  </data>
+  <data name="The selected time slot conflicts with another appointment." xml:space="preserve">
+    <value>يتعارض الوقت المحدد مع موعد آخر.</value>
+  </data>
+  <data name="Time off deleted." xml:space="preserve">
+    <value>تم حذف الإجازة.</value>
+  </data>
+  <data name="Time-off not found." xml:space="preserve">
+    <value>الإجازة غير موجودة.</value>
+  </data>
+  <data name="Time-off period overlaps with an existing approved time-off." xml:space="preserve">
+    <value>تتعارض الإجازة مع إجازة معتمدة أخرى.</value>
+  </data>
+  <data name="Unable to assign the patient role." xml:space="preserve">
+    <value>تعذر تعيين دور المريض.</value>
+  </data>
+  <data name="User not found." xml:space="preserve">
+    <value>المستخدم غير موجود.</value>
+  </data>
+  <data name="User status updated." xml:space="preserve">
+    <value>تم تحديث حالة المستخدم.</value>
+  </data>
+  <data name="Visit is already completed." xml:space="preserve">
+    <value>الزيارة مكتملة بالفعل.</value>
+  </data>
+  <data name="Visit not found." xml:space="preserve">
+    <value>الزيارة غير موجودة.</value>
+  </data>
+  <data name="Vital sign deleted." xml:space="preserve">
+    <value>تم حذف العلامة الحيوية.</value>
+  </data>
+  <data name="Vital sign not found." xml:space="preserve">
+    <value>العلامة الحيوية غير موجودة.</value>
+  </data>
+  <data name="You can only add diagnoses to your own patients." xml:space="preserve">
+    <value>يمكنك إضافة التشخيصات لمرضاك فقط.</value>
+  </data>
+  <data name="You can only manage your own notifications." xml:space="preserve">
+    <value>يمكنك إدارة إشعاراتك فقط.</value>
+  </data>
+  <data name="You can only prescribe for your own patients." xml:space="preserve">
+    <value>يمكنك وصف العلاج لمرضاك فقط.</value>
+  </data>
+  <data name="You can only review completed appointments." xml:space="preserve">
+    <value>يمكنك تقييم المواعيد المكتملة فقط.</value>
+  </data>
+  <data name="You can only review your own appointments." xml:space="preserve">
+    <value>يمكنك تقييم مواعيدك فقط.</value>
+  </data>
+  <data name="You can only start visits for your own appointments." xml:space="preserve">
+    <value>يمكنك بدء زيارات مواعيدك فقط.</value>
+  </data>
+  <data name="You can only update your own diagnoses." xml:space="preserve">
+    <value>يمكنك تعديل تشخيصاتك فقط.</value>
+  </data>
+  <data name="You can only view your own diagnoses." xml:space="preserve">
+    <value>يمكنك عرض تشخيصاتك فقط.</value>
+  </data>
+  <data name="You can only view your own prescriptions." xml:space="preserve">
+    <value>يمكنك عرض وصفاتك الطبية فقط.</value>
+  </data>
+  <data name="You can only view your own visit history." xml:space="preserve">
+    <value>يمكنك عرض سجل زياراتك فقط.</value>
+  </data>
+  <data name="You do not have access to patient data." xml:space="preserve">
+    <value>ليس لديك صلاحية الاطلاع على بيانات المرضى.</value>
+  </data>
+  <data name="You do not have access to this appointment." xml:space="preserve">
+    <value>ليس لديك صلاحية الاطلاع على هذا الموعد.</value>
+  </data>
+  <data name="You do not have access to this patient's data." xml:space="preserve">
+    <value>ليس لديك صلاحية الاطلاع على بيانات هذا المريض.</value>
+  </data>
+  <data name="You do not have access to this prescription." xml:space="preserve">
+    <value>ليس لديك صلاحية الاطلاع على هذه الوصفة.</value>
+  </data>
+  <data name="You do not have access to this visit." xml:space="preserve">
+    <value>ليس لديك صلاحية الاطلاع على هذه الزيارة.</value>
+  </data>
+  <data name="You must be a registered patient to submit reviews." xml:space="preserve">
+    <value>يجب أن تكون مريضا مسجلا لإرسال التقييمات.</value>
+  </data>
+  <data name="BadRequest" xml:space="preserve">
+    <value>الطلب غير صالح.</value>
+  </data>
+  <data name="Unauthorized" xml:space="preserve">
+    <value>يلزم تسجيل الدخول.</value>
+  </data>
+  <data name="Forbidden" xml:space="preserve">
+    <value>ليس لديك صلاحية لتنفيذ هذا الإجراء.</value>
+  </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>المورد المطلوب غير موجود.</value>
+  </data>
+  <data name="ServerError" xml:space="preserve">
+    <value>حدث خطأ في الخادم.</value>
+  </data>
+  <data name="UnexpectedError" xml:space="preserve">
+    <value>حدث خطأ غير متوقع.</value>
+  </data>
+  <data name="ValidationSummary" xml:space="preserve">
+    <value>يرجى مراجعة البيانات المدخلة.</value>
+  </data>
+  <data name="ValidationField" xml:space="preserve">
+    <value>قيمة الحقل {0} غير صالحة. تحقق من النوع والطول والصيغة المطلوبة.</value>
+  </data>
+  <data name="InvalidPhoto" xml:space="preserve">
+    <value>اختر صورة JPEG أو PNG أو WebP صالحة بحجم لا يزيد عن ٢ ميجابايت.</value>
+  </data>
+  <data name="PhotoSaved" xml:space="preserve">
+    <value>تم حفظ الصورة الشخصية.</value>
+  </data>
+  <data name="LanguageSaved" xml:space="preserve">
+    <value>تم حفظ اللغة.</value>
+  </data>
+  <data name="LanguageInvalid" xml:space="preserve">
+    <value>اللغة المدعومة هي ar أو en فقط.</value>
+  </data>
+  <data name="OperationConflict" xml:space="preserve">
+    <value>لا يمكن تنفيذ الإجراء في الحالة الحالية.</value>
+  </data>
+  <data name="PasswordTooShort" xml:space="preserve">
+    <value>كلمة المرور قصيرة جدا.</value>
+  </data>
+  <data name="PasswordRequiresDigit" xml:space="preserve">
+    <value>يجب أن تحتوي كلمة المرور على رقم.</value>
+  </data>
+  <data name="PasswordRequiresLower" xml:space="preserve">
+    <value>يجب أن تحتوي كلمة المرور على حرف صغير.</value>
+  </data>
+  <data name="PasswordRequiresUpper" xml:space="preserve">
+    <value>يجب أن تحتوي كلمة المرور على حرف كبير.</value>
+  </data>
+  <data name="PasswordRequiresNonAlphanumeric" xml:space="preserve">
+    <value>يجب أن تحتوي كلمة المرور على رمز خاص.</value>
+  </data>
+  <data name="PasswordMismatch" xml:space="preserve">
+    <value>كلمة المرور الحالية غير صحيحة.</value>
+  </data>
+  <data name="DuplicateEmail" xml:space="preserve">
+    <value>البريد الإلكتروني مستخدم بالفعل.</value>
+  </data>
+  <data name="DuplicateUserName" xml:space="preserve">
+    <value>اسم المستخدم مستخدم بالفعل.</value>
+  </data>
+  <data name="InvalidToken" xml:space="preserve">
+    <value>الرمز غير صالح أو منتهي الصلاحية.</value>
+  </data>
+</root>

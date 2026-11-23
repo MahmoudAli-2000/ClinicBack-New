@@ -26,12 +26,14 @@ namespace TourSite.APIs.Helper
                 var userManager = services.GetRequiredService<UserManager<User>>();
                 var configuration = services.GetRequiredService<IConfiguration>();
 
-                await context.Database.MigrateAsync();
-                await ClinicDbContextSeed.SeedAsync(context, roleManager, userManager, configuration, loggerInstance);
+                if (context.Database.IsRelational()) await context.Database.MigrateAsync();
+                if (configuration.GetValue<bool?>("Seed:Enabled") ?? app.Environment.IsDevelopment())
+                    await ClinicDbContextSeed.SeedAsync(context, roleManager, userManager, configuration, loggerInstance);
             }
             catch (Exception ex)
             {
-                loggerInstance.LogError(ex, "An error occurred while migrating or seeding the database.");
+                loggerInstance.LogCritical(ex, "Database migration or seed failed. Startup stopped to avoid serving an incomplete database.");
+                throw;
             }
 
             app.UseMiddleware<ExceptionMidleWare>();

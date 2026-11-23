@@ -24,6 +24,34 @@ namespace TourSite.Repository.Data
             var adminUser = await SeedAdminUserAsync(userManager, configuration, logger);
 
             await SeedClinicDataAsync(context, userManager, configuration, adminUser, logger);
+            await SeedBilingualCatalogAsync(context);
+        }
+
+        public static async Task SeedBilingualCatalogAsync(TourDbContext context)
+        {
+            var specialties = new Dictionary<string, (string Name, string Description)> {
+                ["General Practice"] = ("طب عام", "الرعاية الأولية وطب الأسرة"),
+                ["Cardiology"] = ("أمراض القلب", "القلب والأوعية الدموية"),
+                ["Pediatrics"] = ("طب الأطفال", "رعاية الرضع والأطفال والمراهقين"),
+                ["Dermatology"] = ("الأمراض الجلدية", "البشرة والشعر والأظافر"),
+                ["Orthopedics"] = ("جراحة العظام", "الجهاز العضلي والهيكلي والإصابات")
+            };
+            foreach (var row in await context.Specialties.ToListAsync())
+                if (specialties.TryGetValue(row.SpecialtyName, out var text)) { row.SpecialtyNameAr ??= text.Name; row.DescriptionAr ??= text.Description; }
+            foreach (var row in await context.Clinics.ToListAsync()) {
+                row.ClinicNameAr ??= row.ClinicCode switch { "CL-DT" => "عيادة وسط البلد", "CL-RS" => "عيادة النيل", _ => null };
+                if (row.ClinicCode is "CL-DT" or "CL-RS") row.WorkingHoursNotesAr ??= "الأحد إلى الخميس، من التاسعة صباحا حتى السادسة مساء";
+            }
+            var medications = new Dictionary<string,string> { ["Paracetamol"] = "باراسيتامول", ["Ibuprofen"] = "إيبوبروفين", ["Amoxicillin"] = "أموكسيسيلين", ["Amoxicillin/Clavulanate"] = "أموكسيسيلين / كلافولانات", ["Azithromycin"] = "أزيثروميسين", ["Metformin"] = "ميتفورمين", ["Amlodipine"] = "أملوديبين", ["Omeprazole"] = "أوميبرازول", ["Cetirizine"] = "سيتريزين", ["Salbutamol"] = "سالبوتامول" };
+            foreach (var row in await context.Medications.ToListAsync()) {
+                if (medications.TryGetValue(row.GenericName, out var text)) row.GenericNameAr ??= text;
+                if (row.DosageForm == "Inhaler") row.DosageFormAr ??= "بخاخ";
+                var brands = new Dictionary<string,string> { ["Panadol"]="بانادول", ["Augmentin"]="أوجمنتين", ["Norvasc"]="نورفاسك", ["Ventolin"]="فنتولين", ["Zithromax"]="زيثروماكس" };
+                if(row.BrandName != null && brands.TryGetValue(row.BrandName,out var brand)) row.BrandNameAr ??= brand;
+                if (row.DosageForm == "Tablet") row.DosageFormAr ??= "أقراص";
+                if (row.DosageForm == "Capsule") row.DosageFormAr ??= "كبسولات";
+            }
+            await context.SaveChangesAsync();
         }
 
         private static async Task SeedRolesAsync(RoleManager<IdentityRole> roleManager)

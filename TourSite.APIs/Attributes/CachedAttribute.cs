@@ -43,7 +43,7 @@ namespace TourSite.APIs.Attributes
         public string GenerateRequestKey(HttpRequest request)
         {
             var cachedKey = new StringBuilder();
-            cachedKey.Append($"|{request.Path}");
+            cachedKey.Append($"|{request.Path}|culture:{System.Globalization.CultureInfo.CurrentUICulture.Name}");
             foreach (var (key,value) in request.Query.OrderBy(a=>a.Key)) 
             {
                 cachedKey.Append($"|{key}-{value}");

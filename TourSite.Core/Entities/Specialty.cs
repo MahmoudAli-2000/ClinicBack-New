@@ -8,6 +8,12 @@ namespace TourSite.Core.Entities
     [Index(nameof(SpecialtyName), IsUnique = true)]
     public class Specialty
     {
+        [MaxLength(120)]
+        public string? SpecialtyNameAr { get; set; }
+
+        [MaxLength(500)]
+        public string? DescriptionAr { get; set; }
+
         [Key]
         public int Id { get; set; }
 

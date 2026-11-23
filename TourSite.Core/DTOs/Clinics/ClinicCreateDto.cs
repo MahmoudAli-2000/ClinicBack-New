@@ -5,6 +5,10 @@ namespace TourSite.Core.DTOs.Clinics
 {
     public class ClinicCreateDto
     {
+        [System.ComponentModel.DataAnnotations.MaxLength(150)]
+        public string? ClinicNameAr { get; set; }
+        [System.ComponentModel.DataAnnotations.MaxLength(500)]
+        public string? WorkingHoursNotesAr { get; set; }
         [Required, MaxLength(30)]
         public string ClinicCode { get; set; } = string.Empty;
         [Required, MaxLength(150)]

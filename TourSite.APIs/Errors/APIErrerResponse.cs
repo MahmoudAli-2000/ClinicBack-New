@@ -7,7 +7,7 @@
         public APIErrerResponse(int statusCode, string? message = null)
         {
             StatusCode = statusCode;
-            Message = message ?? GetDefaultMessageForStatusCode(statusCode);
+            Message = message is null ? TourSite.Core.Localization.Messages.Get(statusCode switch {400 => "BadRequest",401 => "Unauthorized",403 => "Forbidden",404 => "NotFound",500 => "ServerError",_ => "UnexpectedError"}) : TourSite.Core.Localization.Messages.Error(message, statusCode);
         }
        
         private string? GetDefaultMessageForStatusCode(int statusCode)

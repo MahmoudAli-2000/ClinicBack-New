@@ -23,9 +23,11 @@ services:
       Seed__AdminPassword: ${CLINIC_ADMIN_PASSWORD:?Set CLINIC_ADMIN_PASSWORD in .env}
       FrontendUrl: http://localhost:4200
     ports: ["5295:8080"]
+    volumes: ["clinic-uploads:/app/wwwroot/images/profiles"]
   web:
     build: ../Clinic-Front-New
     depends_on: [api]
     ports: ["4200:80"]
 volumes:
   clinic-data:
+  clinic-uploads:

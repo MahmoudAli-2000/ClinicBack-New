@@ -25,12 +25,12 @@ namespace TourSite.APIs.MidleWare
             {
                 Logger.LogError(ex,ex.Message);
 
+                if (Context.Response.HasStarted) throw;
                 Context.Response.ContentType = "application/json";
-                Context.Response.StatusCode = StatusCodes.Status500InternalServerError;
-
-                var response = Env.IsDevelopment() ?
-                     new ExceptionErrorResponse(StatusCodes.Status500InternalServerError, ex.Message, ex?.StackTrace?.ToString()):
-                                          new APIErrerResponse(StatusCodes.Status500InternalServerError) ;
+                var status = ex is TourSite.Core.Exceptions.AppException appError ? appError.StatusCode : 500;
+                Context.Response.StatusCode = status;
+                // Do not leak stack traces or SQL details to callers, even in development.
+                var response = new APIErrerResponse(status, status == 500 ? TourSite.Core.Localization.Messages.Get("ServerError") : ex.Message);
 
                 var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
 

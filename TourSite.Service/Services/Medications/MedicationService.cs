@@ -69,6 +69,9 @@ namespace TourSite.Service.Services.Medications
             medication.MedicationCode = dto.MedicationCode;
             medication.BrandName = dto.BrandName;
             medication.GenericName = dto.GenericName;
+            medication.GenericNameAr = dto.GenericNameAr;
+            medication.BrandNameAr = dto.BrandNameAr;
+            medication.DosageFormAr = dto.DosageFormAr;
             medication.DosageForm = dto.DosageForm;
             medication.Strength = dto.Strength;
             medication.Unit = dto.Unit;
@@ -110,7 +113,7 @@ namespace TourSite.Service.Services.Medications
             var searchLower = query.SearchLower;
             var spec = new BaseSpecifications<Medication>(string.IsNullOrEmpty(searchLower)
                 ? null!
-                : (m => EF.Functions.Like(m.GenericName.ToLower(), $"%{searchLower}%") ||
+                : (m => (EF.Functions.Like(m.GenericName.ToLower(), $"%{searchLower}%") || (m.GenericNameAr != null && EF.Functions.Like(m.GenericNameAr, $"%{searchLower}%"))) ||
                        (m.BrandName != null && EF.Functions.Like(m.BrandName.ToLower(), $"%{searchLower}%")) ||
                        (m.MedicationCode != null && EF.Functions.Like(m.MedicationCode.ToLower(), $"%{searchLower}%"))));
 

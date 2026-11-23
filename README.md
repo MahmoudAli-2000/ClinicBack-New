@@ -1,3 +1,7 @@
+## Arabic / English and profile photos
+
+See [the detailed bilingual, migration, seed and photo guide](docs/BILINGUAL-SETUP.md). The migration is already included.
+
 # CarePoint Clinic API
 
 .NET 8 clinic management API. This repository retains its existing APIs/Core/Service/Repository architecture and SQL Server data model.

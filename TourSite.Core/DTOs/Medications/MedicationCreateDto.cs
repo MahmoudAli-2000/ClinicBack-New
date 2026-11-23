@@ -5,6 +5,12 @@ namespace TourSite.Core.DTOs.Medications
 {
     public class MedicationCreateDto
     {
+        [System.ComponentModel.DataAnnotations.MaxLength(200)]
+        public string? GenericNameAr { get; set; }
+        [System.ComponentModel.DataAnnotations.MaxLength(200)]
+        public string? BrandNameAr { get; set; }
+        [System.ComponentModel.DataAnnotations.MaxLength(100)]
+        public string? DosageFormAr { get; set; }
         [MaxLength(50)]
         public string? MedicationCode { get; set; }
         [MaxLength(200)]

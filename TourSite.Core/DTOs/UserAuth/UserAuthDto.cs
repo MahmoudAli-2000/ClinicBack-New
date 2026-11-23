@@ -3,6 +3,7 @@ namespace TourSite.Core.DTOs.UserAuth
 {
     public class UserAuthDto
     {
+        public string ImageCover { get; set; } = string.Empty;
         public string? AccessToken { get; set; }
         public string? RefreshToken { get; set; }
         public DateTime AccessTokenExpiresAtUtc { get; set; }

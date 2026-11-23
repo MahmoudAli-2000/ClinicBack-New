@@ -8,6 +8,12 @@ namespace TourSite.Core.Entities
     [Index(nameof(ClinicCode), IsUnique = true)]
     public class Clinic
     {
+        [MaxLength(150)]
+        public string? ClinicNameAr { get; set; }
+
+        [MaxLength(500)]
+        public string? WorkingHoursNotesAr { get; set; }
+
         [Key]
         public int Id { get; set; }
 

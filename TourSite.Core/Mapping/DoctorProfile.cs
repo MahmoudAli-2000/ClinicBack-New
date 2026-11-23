@@ -11,10 +11,12 @@ namespace TourSite.Core.Mapping
         {
             CreateMap<Doctor, DoctorListDto>()
                 .ForMember(d => d.FullName, o => o.MapFrom(s => s.Staff.FirstName + " " + s.Staff.LastName))
+                .ForMember(d => d.SpecialtyNameAr, o => o.MapFrom(s => s.Specialty.SpecialtyNameAr))
                 .ForMember(d => d.SpecialtyName, o => o.MapFrom(s => s.Specialty.SpecialtyName))
                 .ForMember(d => d.ImageCover, o => o.MapFrom(s => $"{configuration["BaseUrl"]}{s.ImageCover}"));
             CreateMap<Doctor, DoctorDetailsDto>()
                 .ForMember(d => d.FullName, o => o.MapFrom(s => s.Staff.FirstName + " " + s.Staff.LastName))
+                .ForMember(d => d.SpecialtyNameAr, o => o.MapFrom(s => s.Specialty.SpecialtyNameAr))
                 .ForMember(d => d.SpecialtyName, o => o.MapFrom(s => s.Specialty.SpecialtyName))
                 .ForMember(d => d.ImageCover, o => o.MapFrom(s => $"{configuration["BaseUrl"]}{s.ImageCover}"));
             CreateMap<DoctorCreateDto, Doctor>()

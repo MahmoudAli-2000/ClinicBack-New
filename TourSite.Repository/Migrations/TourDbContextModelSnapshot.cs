@@ -265,6 +265,10 @@ namespace TourSite.Repository.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
+                    b.Property<string>("ClinicNameAr")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
                     b.Property<string>("Country")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
@@ -292,6 +296,10 @@ namespace TourSite.Repository.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("WorkingHoursNotes")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("WorkingHoursNotesAr")
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
@@ -552,6 +560,10 @@ namespace TourSite.Repository.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
+                    b.Property<string>("BrandNameAr")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
                     b.Property<DateTime>("CreatedAtUtc")
                         .HasColumnType("datetime2");
 
@@ -559,8 +571,16 @@ namespace TourSite.Repository.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("DosageFormAr")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<string>("GenericName")
                         .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("GenericNameAr")
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
@@ -996,6 +1016,10 @@ namespace TourSite.Repository.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
+                    b.Property<string>("DescriptionAr")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
                     b.Property<string>("ImageCover")
                         .IsRequired()
                         .HasMaxLength(500)
@@ -1006,6 +1030,10 @@ namespace TourSite.Repository.Migrations
 
                     b.Property<string>("SpecialtyName")
                         .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
+
+                    b.Property<string>("SpecialtyNameAr")
                         .HasMaxLength(120)
                         .HasColumnType("nvarchar(120)");
 
@@ -1204,6 +1232,7 @@ namespace TourSite.Repository.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("DoctorNotes")
+                        .IsUnicode(true)
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")

@@ -7,6 +7,7 @@ namespace TourSite.Core.DTOs.Doctors
         public int StaffId { get; set; }
         public string FullName { get; set; } = string.Empty;
         public int SpecialtyId { get; set; }
+        public string? SpecialtyNameAr { get; set; }
         public string SpecialtyName { get; set; } = string.Empty;
         public string? ImageCover { get; set; }
         public string PublicCode { get; set; } = string.Empty;

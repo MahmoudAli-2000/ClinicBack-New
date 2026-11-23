@@ -8,6 +8,15 @@ namespace TourSite.Core.Entities
     [Index(nameof(MedicationCode), IsUnique = true)]
     public class Medication
     {
+        [MaxLength(200)]
+        public string? GenericNameAr { get; set; }
+
+        [MaxLength(200)]
+        public string? BrandNameAr { get; set; }
+
+        [MaxLength(100)]
+        public string? DosageFormAr { get; set; }
+
         [Key]
         public int Id { get; set; }
 
