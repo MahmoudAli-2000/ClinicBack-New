@@ -634,6 +634,9 @@ namespace TourSite.Repository.Migrations
                     b.Property<DateTime>("CreatedAtUtc")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime?>("HiddenAtUtc")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Message")
                         .IsRequired()
                         .HasMaxLength(2000)
@@ -703,6 +706,9 @@ namespace TourSite.Repository.Migrations
                         .HasColumnType("bit");
 
                     b.Property<bool>("AppointmentReminders")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("AppointmentUpdates")
                         .HasColumnType("bit");
 
                     b.Property<bool>("GeneralUpdates")

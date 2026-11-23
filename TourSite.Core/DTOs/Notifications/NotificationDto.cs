@@ -12,6 +12,7 @@ namespace TourSite.Core.DTOs.Notifications
         public NotificationStatus Status { get; set; }
         public int? AppointmentId { get; set; }
         public DateTime CreatedAtUtc { get; set; }
+        public DateTime? HiddenAtUtc { get; set; }
         public DateTime? ReadAtUtc { get; set; }
     }
 }

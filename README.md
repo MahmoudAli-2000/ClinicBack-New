@@ -1,3 +1,7 @@
+## Notification center and interface update
+
+See [notification APIs, migration and motion guide](docs/NOTIFICATIONS-AND-MOTION.md).
+
 ## Arabic / English and profile photos
 
 See [the detailed bilingual, migration, seed and photo guide](docs/BILINGUAL-SETUP.md). The migration is already included.

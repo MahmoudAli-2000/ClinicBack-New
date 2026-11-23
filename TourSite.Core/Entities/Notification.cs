@@ -31,6 +31,8 @@ namespace TourSite.Core.Entities
 
         public DateTime? ScheduledAtUtc { get; set; }
         public DateTime? SentAtUtc { get; set; }
+        public DateTime? HiddenAtUtc { get; set; }
+
         public DateTime? ReadAtUtc { get; set; }
         public DateTime CreatedAtUtc { get; set; } = DateTime.UtcNow;
 

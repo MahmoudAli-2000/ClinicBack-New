@@ -19,9 +19,9 @@ namespace TourSite.APIs.Controllers
 
         [HttpGet]
         public async Task<ActionResult<PageinationResponse<NotificationDto>>> GetMine(
-            [FromQuery] bool unreadOnly = false, [FromQuery] PagedQueryDto query = null!)
+            [FromQuery] bool unreadOnly = false, [FromQuery] NotificationQueryDto query = null!)
         {
-            query ??= new PagedQueryDto();
+            query ??= new NotificationQueryDto();
             var result = await _service.GetMineAsync(unreadOnly, query);
             return Ok(result);
         }
@@ -40,6 +40,14 @@ namespace TourSite.APIs.Controllers
             return Ok(new { message = "Notification marked as read." });
         }
 
+        [HttpPut("{id}/visibility")]
+        public async Task<IActionResult> SetVisibility(int id, [FromQuery] bool hidden = true) {
+            await _service.SetHiddenAsync(id, hidden); return Ok(new {message = hidden ? "Notification hidden." : "Notification restored."});
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id) {
+            await _service.DeleteAsync(id); return Ok(new {message = "Notification deleted."});
+        }
         [HttpPut("read-all")]
         public async Task<ActionResult> MarkAllRead()
         {

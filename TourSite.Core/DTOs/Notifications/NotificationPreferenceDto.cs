@@ -8,6 +8,7 @@ namespace TourSite.Core.DTOs.Notifications
         public bool AllowSMS { get; set; }
         public bool AllowPush { get; set; }
         public bool AllowWhatsApp { get; set; }
+        public bool AppointmentUpdates { get; set; } = true;
         public bool AppointmentReminders { get; set; }
         public bool GeneralUpdates { get; set; }
     }

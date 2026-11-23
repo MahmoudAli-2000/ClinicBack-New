@@ -35,7 +35,9 @@ Medical notes, names entered by staff, review text, existing notification bodies
 
 ## The actual migration
 
-Included migration: `20261123211354_BilingualCatalog` in `TourSite.Repository/Migrations`, with designer and updated model snapshot.
+Additional notification visibility/preferences migration is detailed in [NOTIFICATIONS-AND-MOTION.md](NOTIFICATIONS-AND-MOTION.md).
+
+Included bilingual migration: `20261123211354_BilingualCatalog` in `TourSite.Repository/Migrations`, with designer and updated model snapshot.
 
 It adds nullable SQL Server `nvarchar` columns:
 
@@ -153,7 +155,7 @@ The checked-in `docs/MIGRATIONS.sql` is an EF-generated idempotent SQL Server sc
 
 ## Verification and limitations
 
-- Angular production build and backend Release build passed. All 33 browser checks and all 11 API-host tests passed.
+- Angular production build and backend Release build passed. The final combined checkpoint has 36 passing browser checks and 13 passing API-host tests.
 - Browser tests use fixtures, not a real SQL clinic database. API tests run a real ASP.NET host using EF InMemory.
 - Added tests cover locale negotiation/query override, Arabic validation/domain errors, language account isolation, bilingual seed idempotence and valid/invalid authenticated photo uploads.
 - Arabic responsive browser checks cover 320, 390, 768 and 1440 pixels, with desktop/mobile visual inspection.

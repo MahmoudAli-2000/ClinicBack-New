@@ -1196,6 +1196,31 @@ BEGIN
     VALUES (N'20261123211354_BilingualCatalog', N'9.0.2');
 END;
 
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20261123212621_NotificationVisibility'
+)
+BEGIN
+    ALTER TABLE [Notifications] ADD [HiddenAtUtc] datetime2 NULL;
+END;
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20261123212621_NotificationVisibility'
+)
+BEGIN
+    ALTER TABLE [NotificationPreferences] ADD [AppointmentUpdates] bit NOT NULL DEFAULT CAST(1 AS bit);
+END;
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20261123212621_NotificationVisibility'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20261123212621_NotificationVisibility', N'9.0.2');
+END;
+
 COMMIT;
 GO
 

@@ -423,4 +423,13 @@
   <data name="InvalidToken" xml:space="preserve">
     <value>الرمز غير صالح أو منتهي الصلاحية.</value>
   </data>
+  <data name="Notification hidden." xml:space="preserve">
+    <value>تم إخفاء الإشعار.</value>
+  </data>
+  <data name="Notification restored." xml:space="preserve">
+    <value>تمت استعادة الإشعار.</value>
+  </data>
+  <data name="Notification deleted." xml:space="preserve">
+    <value>تم حذف الإشعار.</value>
+  </data>
 </root>

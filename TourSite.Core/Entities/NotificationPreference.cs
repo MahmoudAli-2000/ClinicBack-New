@@ -20,6 +20,7 @@ namespace TourSite.Core.Entities
         public bool AllowPush { get; set; } = true;
         public bool AllowWhatsApp { get; set; } = false;
 
+        public bool AppointmentUpdates { get; set; } = true;
         public bool AppointmentReminders { get; set; } = true;
         public bool GeneralUpdates { get; set; } = true;
 

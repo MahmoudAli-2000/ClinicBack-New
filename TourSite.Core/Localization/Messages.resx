@@ -423,4 +423,13 @@
   <data name="InvalidToken" xml:space="preserve">
     <value>InvalidToken</value>
   </data>
+  <data name="Notification hidden." xml:space="preserve">
+    <value>Notification hidden.</value>
+  </data>
+  <data name="Notification restored." xml:space="preserve">
+    <value>Notification restored.</value>
+  </data>
+  <data name="Notification deleted." xml:space="preserve">
+    <value>Notification deleted.</value>
+  </data>
 </root>

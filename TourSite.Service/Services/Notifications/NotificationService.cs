@@ -40,6 +40,10 @@ namespace TourSite.Service.Services.Notifications
                 return;
 
             var prefs = user.NotificationPreference ?? new NotificationPreference();
+            if (type == "AppointmentReminder" && !prefs.AppointmentReminders) return;
+            if (type.StartsWith("Appointment") && type != "AppointmentReminder" && !prefs.AppointmentUpdates) return;
+            if (!type.StartsWith("Appointment") && !prefs.GeneralUpdates) return;
+            if (!prefs.AllowInApp && !prefs.AllowEmail && !prefs.AllowSMS && !prefs.AllowPush && !prefs.AllowWhatsApp) return;
             var channel = DeterminePreferredChannel(type, prefs);
 
             var notification = new Notification
@@ -58,24 +62,13 @@ namespace TourSite.Service.Services.Notifications
             await _unitOfWork.Repository<Notification>().AddAsync(notification, cancellationToken);
             await _unitOfWork.CompleteAsync(cancellationToken);
 
-            _ = Task.Run(async () =>
-            {
-                try
-                {
-                    await _channelSender.SendAsync(notification, cancellationToken);
-                    notification.Status = NotificationStatus.Sent;
-                    notification.SentAtUtc = DateTime.UtcNow;
-                }
-                catch (Exception ex)
-                {
-                    notification.Status = NotificationStatus.Failed;
-                }
-                _unitOfWork.Repository<Notification>().Update(notification);
-                await _unitOfWork.CompleteAsync(CancellationToken.None);
-            });
+            try { await _channelSender.SendAsync(notification, cancellationToken); notification.Status = NotificationStatus.Sent; notification.SentAtUtc=DateTime.UtcNow; }
+            catch { notification.Status = NotificationStatus.Failed; }
+            _unitOfWork.Repository<Notification>().Update(notification);
+            await _unitOfWork.CompleteAsync(cancellationToken);
         }
 
-        public async Task<PageinationResponse<NotificationDto>> GetMineAsync(bool unreadOnly, PagedQueryDto query, CancellationToken cancellationToken = default)
+        public async Task<PageinationResponse<NotificationDto>> GetMineAsync(bool unreadOnly, NotificationQueryDto query, CancellationToken cancellationToken = default)
         {
             if (_currentUser.UserId is null)
                 throw new AppException(401, "Authentication required.");
@@ -84,6 +77,10 @@ namespace TourSite.Service.Services.Notifications
                 .AsNoTracking()
                 .Where(n => n.UserId == _currentUser.UserId);
 
+            baseQuery = query.Hidden ? baseQuery.Where(n => n.HiddenAtUtc != null) : baseQuery.Where(n => n.HiddenAtUtc == null);
+            if(query.Category == "reminders") baseQuery = baseQuery.Where(n => n.NotificationType == "AppointmentReminder");
+            if(query.Category == "appointments") baseQuery = baseQuery.Where(n => n.NotificationType.StartsWith("Appointment") && n.NotificationType != "AppointmentReminder");
+            if(query.Category == "general") baseQuery = baseQuery.Where(n => !n.NotificationType.StartsWith("Appointment"));
             if (unreadOnly)
                 baseQuery = baseQuery.Where(n => n.ReadAtUtc == null);
 
@@ -105,7 +102,7 @@ namespace TourSite.Service.Services.Notifications
 
             return await _unitOfWork.Repository<Notification>().Query()
                 .AsNoTracking()
-                .CountAsync(n => n.UserId == _currentUser.UserId && n.ReadAtUtc == null, cancellationToken);
+                .CountAsync(n => n.UserId == _currentUser.UserId && n.ReadAtUtc == null && n.HiddenAtUtc == null, cancellationToken);
         }
 
         public async Task MarkReadAsync(int id, CancellationToken cancellationToken = default)
@@ -126,13 +123,26 @@ namespace TourSite.Service.Services.Notifications
             await _unitOfWork.CompleteAsync(cancellationToken);
         }
 
+        private async Task<Notification> OwnAsync(int id, CancellationToken ct) {
+            if(_currentUser.UserId is null) throw new AppException(401,"Authentication required.");
+            var item=await _unitOfWork.Repository<Notification>().Query().FirstOrDefaultAsync(n=>n.Id==id && n.UserId==_currentUser.UserId,ct);
+            return item ?? throw new AppException(404,"Notification not found.");
+        }
+        public async Task SetHiddenAsync(int id, bool hidden, CancellationToken cancellationToken = default) {
+            var item=await OwnAsync(id,cancellationToken);item.HiddenAtUtc=hidden ? DateTime.UtcNow : null;
+            _unitOfWork.Repository<Notification>().Update(item);await _unitOfWork.CompleteAsync(cancellationToken);
+        }
+        public async Task DeleteAsync(int id, CancellationToken cancellationToken = default) {
+            var item=await OwnAsync(id,cancellationToken);_unitOfWork.Repository<Notification>().Delete(item);await _unitOfWork.CompleteAsync(cancellationToken);
+        }
+
         public async Task MarkAllReadAsync(CancellationToken cancellationToken = default)
         {
             if (_currentUser.UserId is null)
                 throw new AppException(401, "Authentication required.");
 
             var unread = await _unitOfWork.Repository<Notification>().Query()
-                .Where(n => n.UserId == _currentUser.UserId && n.ReadAtUtc == null)
+                .Where(n => n.UserId == _currentUser.UserId && n.ReadAtUtc == null && n.HiddenAtUtc == null)
                 .ToListAsync(cancellationToken);
 
             foreach (var n in unread)
@@ -182,10 +192,11 @@ namespace TourSite.Service.Services.Notifications
             prefs.AllowPush = dto.AllowPush;
             prefs.AllowWhatsApp = dto.AllowWhatsApp;
             prefs.AppointmentReminders = dto.AppointmentReminders;
+            prefs.AppointmentUpdates = dto.AppointmentUpdates;
             prefs.GeneralUpdates = dto.GeneralUpdates;
             prefs.UpdatedAtUtc = DateTime.UtcNow;
 
-            _unitOfWork.Repository<NotificationPreference>().Update(prefs);
+            // Query returns a tracked entity; a newly added preference must remain Added.
             await _unitOfWork.CompleteAsync(cancellationToken);
 
             return _mapper.Map<NotificationPreferenceDto>(prefs);
