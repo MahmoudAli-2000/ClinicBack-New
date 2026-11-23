@@ -149,7 +149,7 @@ namespace TourSite.Service.Services.Auth
                 return;
 
             var token = await _userManager.GenerateUserTokenAsync(user, "Default", "PasswordReset");
-            var callbackUrl = $"{_configuration["BaseUrl"]}/reset-password?email={Uri.EscapeDataString(email)}&token={Uri.EscapeDataString(token)}";
+            var callbackUrl = $"{(_configuration["FrontendUrl"] ?? _configuration["BaseUrl"])}/reset-password?email={Uri.EscapeDataString(email)}&token={Uri.EscapeDataString(token)}";
 
             await _emailSender.SendAsync(
                 email,
@@ -198,7 +198,7 @@ namespace TourSite.Service.Services.Auth
                 return;
 
             var token = await _userManager.GenerateUserTokenAsync(user, "Default", "EmailConfirmation");
-            var callbackUrl = $"{_configuration["BaseUrl"]}/confirm-email?userId={user.Id}&token={Uri.EscapeDataString(token)}";
+            var callbackUrl = $"{(_configuration["FrontendUrl"] ?? _configuration["BaseUrl"])}/confirm-email?userId={user.Id}&token={Uri.EscapeDataString(token)}";
 
             await _emailSender.SendAsync(
                 email,

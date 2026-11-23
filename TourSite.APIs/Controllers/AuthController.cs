@@ -27,6 +27,7 @@ namespace TourSite.APIs.Controllers
             var ipAddress = HttpContext.Connection.RemoteIpAddress?.ToString();
             var result = await _authService.RegisterAsync(dto, ipAddress);
             SetAuthCookie(result.AccessToken);
+            SetRefreshCookie(result.RefreshToken);
             return Ok(result);
         }
 
@@ -37,15 +38,20 @@ namespace TourSite.APIs.Controllers
             var result = await _authService.LoginAsync(dto, ipAddress);
 
             SetAuthCookie(result.AccessToken);
+            SetRefreshCookie(result.RefreshToken);
 
             return Ok(result);
         }
 
         [HttpPost("refresh")]
-        public async Task<ActionResult<UserAuthDto>> Refresh([FromBody] RefreshTokenRequestDto dto)
+        public async Task<ActionResult<UserAuthDto>> Refresh([FromBody] RefreshTokenRequestDto? dto = null)
         {
             var ipAddress = HttpContext.Connection.RemoteIpAddress?.ToString();
-            var result = await _authService.RefreshAsync(dto.RefreshToken, ipAddress);
+            var refreshToken = dto?.RefreshToken ?? Request.Cookies["clinic_refresh"];
+            if (string.IsNullOrWhiteSpace(refreshToken)) return Unauthorized(new APIErrerResponse(401, "Session expired."));
+            var result = await _authService.RefreshAsync(refreshToken, ipAddress);
+            SetAuthCookie(result.AccessToken);
+            SetRefreshCookie(result.RefreshToken);
             return Ok(result);
         }
 
@@ -54,16 +60,29 @@ namespace TourSite.APIs.Controllers
         {
             await _authService.RevokeRefreshTokenAsync(dto.RefreshToken);
             Response.Cookies.Delete("jwt", GetAuthCookieOptions());
+            Response.Cookies.Delete("clinic_refresh", GetRefreshCookieOptions());
             return Ok(new { message = "Refresh token revoked." });
         }
 
         [HttpPost("logout")]
-        public IActionResult Logout()
+        public async Task<IActionResult> Logout()
         {
+            var refreshToken = Request.Cookies["clinic_refresh"];
+            if (!string.IsNullOrWhiteSpace(refreshToken)) await _authService.RevokeRefreshTokenAsync(refreshToken);
             Response.Cookies.Delete("jwt", GetAuthCookieOptions());
+            Response.Cookies.Delete("clinic_refresh", GetRefreshCookieOptions());
             return Ok(new { message = "Logged out successfully." });
         }
 
+        private CookieOptions GetRefreshCookieOptions() => new()
+        {
+            HttpOnly = true, Secure = !_environment.IsDevelopment(), SameSite = SameSiteMode.Lax,
+            Path = "/api", Expires = DateTimeOffset.UtcNow.AddDays(_tokenService.RefreshTokenDays)
+        };
+        private void SetRefreshCookie(string? token)
+        {
+            if (!string.IsNullOrWhiteSpace(token)) Response.Cookies.Append("clinic_refresh", token, GetRefreshCookieOptions());
+        }
         private void SetAuthCookie(string? token)
         {
             if (string.IsNullOrWhiteSpace(token))

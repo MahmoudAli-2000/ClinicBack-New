@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using TourSite.APIs.Errors;
 using TourSite.APIs.Helper;
 using TourSite.APIs.MidleWare;
@@ -29,7 +29,8 @@ namespace TourSite.APIs
                 });
             });
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers().AddJsonOptions(options =>
+                options.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter()));
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
@@ -41,7 +42,7 @@ namespace TourSite.APIs
             app.UseRouting();
             app.UseCors("OpenCors");
 
-            app.UseHttpsRedirection();
+            if (!app.Environment.IsDevelopment()) app.UseHttpsRedirection();
 
             app.UseAuthentication();
             app.UseAuthorization();
@@ -51,9 +52,9 @@ namespace TourSite.APIs
             app.UseSwagger();
             app.UseSwaggerUI();
 
-            app.UseMiddleware<ExceptionMidleWare>();
 
             app.MapControllers();
+            app.MapFallbackToFile("index.html");
 
             app.Run();
         }

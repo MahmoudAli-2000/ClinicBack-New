@@ -18,6 +18,7 @@ namespace TourSite.APIs.Controllers
             _service = service;
         }
 
+        [Authorize(Roles = "Admin,Manager,Doctor,Nurse")]
         [HttpPost]
         public async Task<ActionResult<MedicationDto>> Create([FromForm] MedicationCreateDto dto)
         {
@@ -25,6 +26,7 @@ namespace TourSite.APIs.Controllers
             return Ok(result);
         }
 
+        [Authorize(Roles = "Admin,Manager,Doctor,Nurse")]
         [HttpPut("{id}")]
         public async Task<ActionResult<MedicationDto>> Update(int id, [FromForm] MedicationUpdateDto dto)
         {
@@ -46,6 +48,7 @@ namespace TourSite.APIs.Controllers
             return Ok(result);
         }
 
+        [Authorize(Roles = "Admin,Manager,Doctor,Nurse")]
         [HttpPut("{id}/status")]
         public async Task<ActionResult> SetActive(int id, [FromQuery] bool isActive)
         {

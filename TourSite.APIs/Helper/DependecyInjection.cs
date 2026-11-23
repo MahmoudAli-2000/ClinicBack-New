@@ -168,7 +168,7 @@ namespace TourSite.APIs.Helper
                     ValidateIssuerSigningKey = true,
                     ClockSkew = TimeSpan.Zero,
                     ValidAudience = configuration["JwtSettings:Audience"],
-                    RoleClaimType = "role",
+                    RoleClaimType = System.Security.Claims.ClaimTypes.Role,
                     IssuerSigningKey = new SymmetricSecurityKey(
                         Encoding.UTF8.GetBytes(configuration["JwtSettings:Key"]
                             ?? throw new InvalidOperationException("JwtSettings:Key is missing")))

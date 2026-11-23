@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourSite.Service", "TourSit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourSite.Repository", "TourSite.Repository\TourSite.Repository.csproj", "{42B7BC58-BECD-4B49-964E-1F57181BFACE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clinic.IntegrationTests", "Clinic.IntegrationTests\Clinic.IntegrationTests.csproj", "{50CFC0FC-07DF-4915-B840-6647DAAAA3FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{42B7BC58-BECD-4B49-964E-1F57181BFACE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42B7BC58-BECD-4B49-964E-1F57181BFACE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42B7BC58-BECD-4B49-964E-1F57181BFACE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50CFC0FC-07DF-4915-B840-6647DAAAA3FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50CFC0FC-07DF-4915-B840-6647DAAAA3FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50CFC0FC-07DF-4915-B840-6647DAAAA3FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50CFC0FC-07DF-4915-B840-6647DAAAA3FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
