@@ -78,4 +78,16 @@ public class ApiTests
   await Json(await client.PutAsync($"/api/Medications/{id}/status?isActive=false",null));
   var read=await Json(await client.GetAsync($"/api/Medications/{id}"));Assert.False(read.GetProperty("isActive").GetBoolean());
  }
+ [Fact]
+ public async Task Appearance_is_validated_and_isolated_per_account()
+ {
+  await using var factory=new ClinicFactory();await factory.Initialize();using var admin=factory.CreateClient();using var patient=factory.CreateClient();
+  await Json(await admin.PostAsJsonAsync("/api/Auth/login",new {email="admin@clinic.local",password="Admin@123"}));
+  await Json(await patient.PostAsJsonAsync("/api/Auth/register",new {fullName="Theme Patient",email="theme@clinic.test",password="Testing@123"}));
+  await Json(await admin.PutAsJsonAsync("/api/Appearance",new {mode="dark",accent="#7c3aed",density="compact",corners="square",textSize="large",font="serif"}));
+  var own=await Json(await admin.GetAsync("/api/Appearance"));Assert.Equal("dark",own.GetProperty("mode").GetString());
+  var other=await Json(await patient.GetAsync("/api/Appearance"));Assert.Equal("light",other.GetProperty("mode").GetString());
+  Assert.Equal(HttpStatusCode.BadRequest,(await admin.PutAsJsonAsync("/api/Appearance",new {mode="invalid",accent="invalid"})).StatusCode);
+ }
+
 }

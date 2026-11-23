@@ -22,3 +22,7 @@ The backend business model and layers are preserved. Changes address verified fr
 - Some nullable/compiler warnings remain from existing code.
 - External notification channels need providers. In-app delivery is implemented; the UI does not imply that SMTP/SMS/WhatsApp/push are configured merely because their preference can be saved.
 - Full penetration testing, CSRF posture, HTTPS/reverse-proxy headers, data-access audit logs and regulatory compliance are outside the verification performed here.
+
+## Added after initial checkpoint: personal appearance
+
+Authorized GET/PUT `/api/Appearance` stores a validated appearance DTO in the signed-in user's existing Identity claims. No user ID can be supplied to edit another account and no arbitrary CSS is accepted. Added an API-host test proving separate account preferences and rejection of invalid values. No database migration is required.
